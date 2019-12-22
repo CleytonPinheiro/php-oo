@@ -6,13 +6,12 @@ class Conta
     private $saldo;
     private static $numeroDeContas = 0;
 
-
-    public function __construct (Titular $titular)
+    public function __construct(Titular $titular)
     {
         $this->titular = $titular;
-        $this->saldo=0;
+        $this->saldo = 0;
 
-        self::$numeroDeContas ++; // Poderia ser Conta:: (Classe)
+        self::$numeroDeContas++;
     }
 
     public function __destruct()
@@ -20,46 +19,50 @@ class Conta
         self::$numeroDeContas--;
     }
 
-    public function sacar(float $valorASacar){
-        if ($valorASacar > $this->saldo){
-            echo"Saldo indisponivel";
-            return;
-        }
-        $this->saldo-=$valorASacar;
-    }
-
-    public function depositar(float $valorADepositar): void
+    public function saca(float $valorASacar): void
     {
-        if($valorADepositar < 0){
-            echo "Valor precisa ser positivo";
-            return;
-        }
-        $this->saldo += $valorADepositar;
-    }
-
-    public function transferir(float $ValorATransferir, Conta $contaDestino): void
-    {
-        if ($ValorATransferir > $this->saldo){
+        if ($valorASacar > $this->saldo) {
             echo "Saldo indisponível";
             return;
         }
-        $this->sacar($ValorATransferir);
-        $contaDestino->depositar($ValorATransferir);
+
+        $this->saldo -= $valorASacar;
     }
 
-    public function recuperarSaldo(): float
+    public function deposita(float $valorADepositar): void
+    {
+        if ($valorADepositar < 0) {
+            echo "Valor precisa ser positivo";
+            return;
+        }
+
+        $this->saldo += $valorADepositar;
+    }
+
+    public function transfere(float $valorATransferir, Conta $contaDestino): void
+    {
+        if ($valorATransferir > $this->saldo) {
+            echo "Saldo indisponível";
+            return;
+        }
+
+        $this->sacar($valorATransferir);
+        $contaDestino->depositar($valorATransferir);
+    }
+
+    public function recuperaSaldo(): float
     {
         return $this->saldo;
-    }
-
-    public function recuperaCpfTitular(): string
-    {
-        return $this->titular->recuperaCpf();
     }
 
     public function recuperaNomeTitular(): string
     {
         return $this->titular->recuperaNome();
+    }
+
+    public function recuperaCpfTitular(): string
+    {
+        return $this->titular->recuperaCpf();
     }
 
     public static function recuperaNumeroDeContas(): int
