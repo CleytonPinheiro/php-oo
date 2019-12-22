@@ -2,7 +2,12 @@
 
 require_once 'src/Conta.php';
 
-$primeiraConta = new Conta();
-$primeiraConta->depositar(500);
-$primeiraConta->sacar(300);
-$primeiraConta->saldo -= 300;
+$SegundaConta = new Conta('25*****656','Camila');
+//$primeiraConta->depositar(500);
+//$primeiraConta->sacar(300);
+
+//echo $SegundaConta->recuperaNomeTitular() . PHP_EOL;
+//echo $SegundaConta->recuperarSaldo(). PHP_EOL;
+//echo $SegundaConta->recuperaCpfTitular(). PHP_EOL;
+
+echo Conta::recuperaNumeroDeContas();
