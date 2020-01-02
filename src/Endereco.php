@@ -1,5 +1,6 @@
 <?php
 
+namespace Alura\Banco\Modelo;
 
 class Endereco
 {
@@ -42,9 +43,5 @@ class Endereco
     {
         return $this->numero;
     }
-
-
-
-
 }
 
