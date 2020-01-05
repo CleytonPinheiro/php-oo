@@ -9,4 +9,3 @@ spl_autoload_register(function (string $nomeCompletoDaClasse) {
         require_once $caminhoArquivo;
     }
 });
-
